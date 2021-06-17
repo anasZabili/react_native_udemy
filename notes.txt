@@ -1,0 +1,22 @@
+View: 
+  toute les view son par default en display : flex
+  flexDirection: column,
+  c'est le seul display qui existe avec react native
+
+Linking:
+  Pour ajouter tout type de lien au sein de notre application 
+  (lien mail, numeron site externe)
+
+  ouverture de mail:
+    onPress={() => {
+          Linking.openURL("mailto:test@test.com");
+    }}
+  
+  ouverture de numero:
+    const openNumber = () => {
+      if (Platform.OS === "android") {
+        Linking.openURL("tel:0723456789");
+      } else {
+        Linking.openURL("telprompt:0789234567");
+      }
+    };
