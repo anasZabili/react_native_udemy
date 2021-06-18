@@ -11,7 +11,8 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { Subheading, Title, Card, Button } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
-const Profil = () => {
+const Profil = ({ navigation, route }) => {
+  const { id, name, position } = route.params;
   const openNumber = () => {
     if (Platform.OS === "android") {
       Linking.openURL("tel:0723456789");
@@ -35,8 +36,8 @@ const Profil = () => {
         />
       </View>
       <View style={styles.informationView}>
-        <Title>Mario</Title>
-        <Subheading>Lead dev in React Native</Subheading>
+        <Title>{name}</Title>
+        <Subheading>{position}</Subheading>
       </View>
       <Card
         style={styles.card}
@@ -90,10 +91,19 @@ const Profil = () => {
           style={styles.button}
           icon="delete"
           mode="contained"
-          onPress={() => console.log("Pressed")}
+          onPress={() => navigation.goBack()}
           theme={theme}
         >
           Delete
+        </Button>
+
+        <Button
+          style={styles.button}
+          mode="contained"
+          onPress={() => navigation.push("Profil")}
+          theme={theme}
+        >
+          Retourner dans profil de nouveau
         </Button>
       </View>
     </View>
@@ -128,7 +138,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   button: {
-    width: "35%",
+    width: "30%",
   },
 });
 const theme = {

@@ -20,3 +20,77 @@ Linking:
         Linking.openURL("telprompt:0789234567");
       }
     };
+
+React Navigation:
+  https://reactnavigation.org/docs/ (penser a aller direct au summary), il resume
+  tout tres bien
+
+  Navigation entre ecran
+    navigation.naviagte("nom du composant"); push sur la stack le composant,
+    et ne fait rien si le composant est deja en sommet de stack, si le composant,
+    est a la position X dans la pile, ce composant remonte au top, en effacant tout
+    les composant ce trouver entre sa position X et le sommet de pile
+
+    navigation.push("nom du composant"); push quoi qu'il arrive le composant en 
+    sommet de stack quite a empiler plusieur composant similaire,
+
+    navigation.goBack(), pop le composant en sommet de stack, ne fait rien si 
+    la pile ne contient qu'un seule element
+
+    navigation.popToTop(), pop tout les element de la pile jusque arrivé au dernier 
+    element
+
+  Passage de parametre:
+    navigation.navigate('RouteName', { /* params go here */ })
+    un objet contenant tout nos parametre est passé en deuxieme argument lors de 
+    nos navigaiton
+  
+  Récupération de parametre:
+    en plus de "navigation" un autre objet est injecté a nos vue
+    "route" est celui ci contient nos parametre accessible dans le champ
+    route.params
+  
+  Mise a jour des parametres:
+    il est aussi possible de mettre a jour les parametre de la meme facon qu'un 
+    state nous utilisons un setter
+
+    navigation.setParams({
+      query: 'someText',
+    })
+
+  Parametre initial (Interessant):
+    il est possible de passer a un ecran au moment de ça declaration dans le routes
+    des parametre initiaux qui servirons de parametre par defaut si aucun parametre 
+    nest specifié 
+      <Stack.Screen
+        name="Details"
+        component={DetailsScreen}
+        initialParams={{ itemId: 42 }}
+      />
+
+  Passé des parametres a un precedent ecran:
+    il est possible de passer des params a un ecran plus bas dans la pile
+    utile si par exemple le user remplis en formulaire et l'on veut le resultat
+    de ce formiulaire dans une ecran situé plus bas sans avoir besoin de faire 
+    des passage de prips complique 
+
+    pour cela on utilise la methode navigate en referencant un ecran plus bas 
+    dans la pile 
+
+              // Pass and merge params back to home screen
+          navigation.navigate({
+            name: 'Home',
+            params: { post: postText },
+            merge: true,
+          });
+
+  Anti pattern Navigation:
+    un anti patern consciste a passer toute la donne dans les param (au lieu de 
+    juste un id permettant de retrouver la données par exemple ) ce comportement
+    est a evité absolument 
+
+
+
+
+
+
