@@ -12,12 +12,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Subheading, Title, Card, Button } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 const Profil = ({ navigation, route }) => {
-  const { id, name, position } = route.params;
+  const { id, name, position, picture, phone, salary, email } = route.params;
   const openNumber = () => {
     if (Platform.OS === "android") {
-      Linking.openURL("tel:0723456789");
+      Linking.openURL("tel:" + phone);
     } else {
-      Linking.openURL("telprompt:0789234567");
+      Linking.openURL("telprompt:" + { phone });
     }
   };
   return (
@@ -31,7 +31,7 @@ const Profil = ({ navigation, route }) => {
         <Image
           style={styles.image}
           source={{
-            uri: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+            uri: picture,
           }}
         />
       </View>
@@ -42,7 +42,7 @@ const Profil = ({ navigation, route }) => {
       <Card
         style={styles.card}
         onPress={() => {
-          Linking.openURL("mailto:test@test.com");
+          Linking.openURL("mailto:" + email);
         }}
       >
         <View style={styles.cardContent}>
@@ -52,7 +52,7 @@ const Profil = ({ navigation, route }) => {
             color="gray"
             style={styles.informationIcon}
           />
-          <Text style={styles.informationText}>test@test.com</Text>
+          <Text style={styles.informationText}>{email}</Text>
         </View>
       </Card>
       <Card style={styles.card} onPress={openNumber}>
@@ -63,7 +63,7 @@ const Profil = ({ navigation, route }) => {
             color="gray"
             style={styles.informationIcon}
           />
-          <Text style={styles.informationText}>0738982367</Text>
+          <Text style={styles.informationText}>{phone}</Text>
         </View>
       </Card>
       <Card style={styles.card}>
@@ -74,7 +74,7 @@ const Profil = ({ navigation, route }) => {
             color="gray"
             style={styles.informationIcon}
           />
-          <Text style={styles.informationText}>3500€ net/mois</Text>
+          <Text style={styles.informationText}>{salary} net/mois</Text>
         </View>
       </Card>
       <View style={styles.buttonsView}>

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, FlatList } from "react-native";
 import { TextInput, Button, Modal, Portal } from "react-native-paper";
+import * as ImagePicker from "expo-image-picker";
 
 const CreateEmployee = () => {
   const [name, setName] = useState("");
@@ -9,6 +10,49 @@ const CreateEmployee = () => {
   const [salary, setSalary] = useState("");
   const [picture, setPicture] = useState("");
   const [modal, setModal] = useState(false);
+
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "web") {
+        const { status } =
+          await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+      }
+    })();
+  }, []);
+
+  const pickImageFromLibrary = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 0.5,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+  const pickImageFromCamera = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 0.5,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
   handleClose = () => {
     setModal(false);
@@ -79,7 +123,7 @@ const CreateEmployee = () => {
               <Button
                 icon="camera"
                 mode="contained"
-                onPress={handleClose}
+                onPress={pickImageFromCamera}
                 style={styles.selectButton}
               >
                 Camera
@@ -87,7 +131,7 @@ const CreateEmployee = () => {
               <Button
                 icon="image"
                 mode="contained"
-                onPress={handleClose}
+                onPress={pickImageFromLibrary}
                 style={styles.selectButton}
               >
                 Galerie

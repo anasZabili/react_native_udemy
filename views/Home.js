@@ -5,17 +5,116 @@ import { Card, FAB } from "react-native-paper";
 
 const Home = ({ navigation }) => {
   const cards = [
-    { id: "1", name: "anas", position: "web dev" },
-    { id: "2", name: "didier", position: "ux designer" },
-    { id: "3", name: "anas", position: "css expert" },
-    { id: "4", name: "raimon", position: "coffe maker" },
-    { id: "5", name: "pluriel", position: "tea maker" },
-    { id: "6", name: "mario", position: "chocolat maker" },
-    { id: "7", name: "luigi", position: "clean maker" },
-    { id: "8", name: "bowser", position: "desaster maker" },
-    { id: "9", name: "mario", position: "chocolat maker" },
-    { id: "10", name: "luigi", position: "clean maker" },
-    { id: "11", name: "bowser", position: "desaster maker" },
+    {
+      id: "1",
+      name: "anas",
+      position: "web dev",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+      id: "2",
+      name: "didier",
+      position: "ux designer",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+      id: "3",
+      name: "anas",
+      position: "css expert",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+      id: "4",
+      name: "raimon",
+      position: "coffe maker",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+      id: "5",
+      name: "pluriel",
+      position: "tea maker",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+      id: "6",
+      name: "mario",
+      position: "chocolat maker",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+      id: "7",
+      name: "luigi",
+      position: "clean maker",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+      id: "8",
+      name: "bowser",
+      position: "desaster maker",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+      id: "9",
+      name: "mario",
+      position: "chocolat maker",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+      id: "10",
+      name: "luigi",
+      position: "clean maker",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+      id: "11",
+      name: "bowser",
+      position: "desaster maker",
+      email: "test@test.com",
+      salary: "3500 $",
+      phone: "078723457866",
+      picture:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    },
   ];
   // return cards.map((value, index) => {
   //   return (
@@ -36,7 +135,7 @@ const Home = ({ navigation }) => {
   //   );
   // });
   return (
-    <View>
+    <View style={styles.root}>
       <FlatList
         data={cards}
         renderItem={({ item }) => {
@@ -72,6 +171,7 @@ const Home = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  root: { flex: 1 },
   card: {
     // flex: 1,
     backgroundColor: "#edf3fc",

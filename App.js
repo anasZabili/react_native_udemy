@@ -14,24 +14,23 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
-function HomeScreen() {
-  return function HomeScreen() {
-    return (
-      <View style={styles.container}>
-        {/* <Home /> */}
-        {/* <CreateEmployee /> */}
-        <Profil />
-        <StatusBar style="auto" />
-      </View>
-    );
-  };
-}
-
 export default function App() {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: "lightgray",
+            },
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+          initialRouteName="Home"
+        >
           <Stack.Screen
             name="Home"
             component={Home}
