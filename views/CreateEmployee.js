@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, FlatList } from "react-native";
 import { TextInput, Button, Modal, Portal } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
+import AddPictureModal from "../components/AddPictureModal";
+import useAddDocument from "../hooks/useAddDocument";
 
 const CreateEmployee = () => {
   const [name, setName] = useState("");
@@ -10,8 +12,13 @@ const CreateEmployee = () => {
   const [salary, setSalary] = useState("");
   const [picture, setPicture] = useState("");
   const [modal, setModal] = useState(false);
-
   const [image, setImage] = useState(null);
+
+  const [addDocument, id, isLoading, error] = useAddDocument("employee-profil");
+  console.log(
+    "🚀 ~ file: CreateEmployee.js ~ line 18 ~ CreateEmployee ~ error",
+    error
+  );
 
   useEffect(() => {
     (async () => {
@@ -25,40 +32,19 @@ const CreateEmployee = () => {
     })();
   }, []);
 
-  const pickImageFromLibrary = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 0.5,
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
-  };
-  const pickImageFromCamera = async () => {
-    let result = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 0.5,
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
-  };
-
-  handleClose = () => {
+  const handleClose = () => {
     setModal(false);
   };
-  const handleClick = () => {
+  const handleUploadImage = () => {
     setModal(true);
+  };
+  const handleClick = () => {
+    addDocument({
+      name,
+      phone: phoneNumber,
+      salary,
+      email,
+    });
   };
   return (
     <View style={styles.root}>
@@ -99,7 +85,7 @@ const CreateEmployee = () => {
       <Button
         icon="upload"
         mode="contained"
-        onPress={handleClick}
+        onPress={handleUploadImage}
         style={styles.uploadButton}
       >
         Upload Image
@@ -112,41 +98,11 @@ const CreateEmployee = () => {
       >
         Save
       </Button>
-      <Portal>
-        <Modal
-          visible={modal}
-          onDismiss={handleClose}
-          contentContainerStyle={styles.containerStyle}
-        >
-          <View style={styles.modalView}>
-            <View style={styles.modalButtonView}>
-              <Button
-                icon="camera"
-                mode="contained"
-                onPress={pickImageFromCamera}
-                style={styles.selectButton}
-              >
-                Camera
-              </Button>
-              <Button
-                icon="image"
-                mode="contained"
-                onPress={pickImageFromLibrary}
-                style={styles.selectButton}
-              >
-                Galerie
-              </Button>
-            </View>
-            <Button
-              mode="contained"
-              onPress={handleClose}
-              style={styles.selectButton}
-            >
-              Cancel
-            </Button>
-          </View>
-        </Modal>
-      </Portal>
+      <AddPictureModal
+        modal={modal}
+        handleClose={handleClose}
+        setImage={setImage}
+      />
     </View>
   );
 };
